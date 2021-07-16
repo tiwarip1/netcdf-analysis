@@ -1,9 +1,8 @@
 import os
 import shutil
 
-def sorting():
-    directory = '../Lingyun-data/'
-
+def sorting(directory = '../Lingyun-data/'):
+    
     files_in_directory = os.listdir(directory)
     filtered_files = [file for file in files_in_directory if 'Copy' in file]
 
