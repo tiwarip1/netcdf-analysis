@@ -2,9 +2,12 @@ import subprocess
 import os,re
 
 nlist = ["2018_12_22_05_327_000.nc",]
-for name in os.listdir():   # nlist
+
+directory = '../Lingyun-data/'
+
+for name in os.listdir(directory):   # nlist
    if name[-2:]=='nc':
-      txt = subprocess.Popen(["ncdump","-v","CurrentT,CurrentH",name], stdout=subprocess.PIPE, text=True)
+      txt = subprocess.Popen(["ncdump","-v","CurrentT,CurrentH",name], stdout=subprocess.PIPE, text=True,cwd=directory)
       result = txt.communicate()
       outstr = name
       dlist = result[0].split(';')

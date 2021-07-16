@@ -5,12 +5,16 @@ import os,re
 nlist = ["2017_02_06_01_SnO_000.nc",]
 keep_comments = ["ALockin","BLockin","CLockin","DLockin","EVoltage","FVoltage","GVoltage","HVoltage"]
 reject_var = ["ALockin","BLockin","CLockin","DLockin"]
-for name in os.listdir():   # nlist
+
+directory = '../Lingyun-data'
+
+for name in os.listdir(directory):   # nlist
    if name[-2:]=='nc':
-    if name < "2017_05_18_03_Sr327_001.nc":
+    if name < "{}/2017_05_18_03_Sr327_001.nc".format(directory):
+      print('yes')
       fout = open(name[0:-3]+'.dat','w')
       # txt = subprocess.Popen(["ncdump","-v","CurrentT,CurrentH",name], stdout=subprocess.PIPE, text=True)
-      txt = subprocess.Popen(["ncdump",name], stdout=subprocess.PIPE, text=True)
+      txt = subprocess.Popen(["ncdump",name], stdout=subprocess.PIPE, text=True,cwd=directory)
       result = txt.communicate()
       outstr = '#'+name
       cname = '# CurrentT,CurrentH'
